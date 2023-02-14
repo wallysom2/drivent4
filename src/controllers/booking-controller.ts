@@ -30,7 +30,6 @@ const reserva = await bookingService.createBookingById(userId, Number(salaId));
 return res.status(httpStatus.OK).send({
   reservaId: reserva.id,
 });
-
 } catch (error) {
     if (error.name === "CannotBookingError") {
     return res.sendStatus(httpStatus.FORBIDDEN);
@@ -59,15 +58,11 @@ const reserva = await bookingService.updateBookingById(userId, Number(salaId));
 return res.status(httpStatus.OK).send({
   reservaId: reserva.id,
 });
+
 } catch (error) {
-if (error.name === "CannotBookingError") {
-return res.sendStatus(httpStatus.FORBIDDEN);
-}
-return res.sendStatus(httpStatus.NOT_FOUND);
-}
-}
-
-
-
-
-
+    if (error.name === "CannotBookingError") {
+    return res.sendStatus(httpStatus.FORBIDDEN);
+    }
+    return res.sendStatus(httpStatus.NOT_FOUND);
+    }
+    }
